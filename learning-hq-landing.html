@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercharged Learning HQ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2E4ED1;
+            --accent-blue: #2E63D1;
+            --primary-orange: #E73F0B;
+            --accent-red: #C1413E;
+            --dark-bg: #0a0e27;
+            --darker-bg: #060913;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Orbs */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 50%, #0f1535 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-blue), transparent);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-orange), transparent);
+            bottom: -10%;
+            right: -5%;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent-blue), transparent);
+            top: 40%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(30px, 50px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            text-align: center;
+            color: white;
+        }
+
+        .clearance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(46, 78, 209, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 78, 209, 0.3);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(46, 78, 209, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(46, 78, 209, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2E63D1 0%, #60a5fa 50%, #2E4ED1 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .btn-primary {
+            position: relative;
+            padding: 20px 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(46, 78, 209, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 78, 209, 0.5);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            padding: 20px 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(46, 78, 209, 0.1), rgba(46, 99, 209, 0.15));
+            color: var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: #666;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* Problem Section - Bento Grid Style */
+        .problem-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-orange));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-color: rgba(46, 78, 209, 0.2);
+        }
+
+        .problem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .problem-icon {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .problem-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #0a0e27;
+        }
+
+        .problem-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        /* Solution Section - Timeline Style */
+        .solution-section {
+            background: var(--dark-bg);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(46, 78, 209, 0.15), transparent);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .solution-step {
+            position: relative;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            box-shadow: 0 10px 40px rgba(46, 78, 209, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .solution-step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 50px rgba(46, 78, 209, 0.6);
+        }
+
+        .solution-step h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .solution-step p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
+        /* Content Section - Cards with Gradient Borders */
+        .content-section {
+            background: #ffffff;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .content-card {
+            position: relative;
+            background: white;
+            padding: 45px 35px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-orange));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(46, 78, 209, 0.15);
+            border-color: transparent;
+        }
+
+        .content-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #0a0e27;
+        }
+
+        .content-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        /* Use Cases - Asymmetric Grid */
+        .usecases-section {
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .usecases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .usecase-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .usecase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: rgba(46, 78, 209, 0.3);
+        }
+
+        .usecase-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #0a0e27;
+        }
+
+        .usecase-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(46, 78, 209, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .trust-item h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .trust-item p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(46, 78, 209, 0.2), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .cta-box {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .cta-box p {
+            font-size: 1.3rem;
+            opacity: 0.85;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .problem-grid,
+            .solution-grid,
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 80px 20px;
+            }
+
+            .problem-grid,
+            .solution-grid,
+            .content-grid,
+            .usecases-grid,
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        
+        <div class="hero-content">
+            <div class="clearance-badge">
+                🎯 CLEARANCE GRANTED
+            </div>
+            <h1>
+                Welcome to the <span class="gradient-text">HQ</span>
+            </h1>
+            <p class="hero-subtitle">
+                The intelligence hub for people who want to unlearn what's holding them back and relearn what actually works. No boring lectures. No academic fluff. Just practical skills, real experiments, and actionable insights.
+            </p>
+            <div class="cta-group">
+                <a href="#join" class="btn-primary">Join the Mission</a>
+                <a href="#learn-more" class="btn-secondary">Explore Intel</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="section-label">THE SITUATION</span>
+                <h2 class="section-title">You're Capable of More</h2>
+                <p class="section-subtitle">But outdated learning methods, fake limitations, and wasted time are keeping you stuck in place.</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">🔒</span>
+                    <h3>Outdated Mindsets</h3>
+                    <p>You're carrying beliefs from school, society, or your upbringing that no longer serve you. They're invisible walls keeping you from what's possible.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">⏳</span>
+                    <h3>Trial & Error Fatigue</h3>
+                    <p>You've spent too much time experimenting without results. You need proven frameworks, not another vague productivity hack.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">❌</span>
+                    <h3>Traditional Learning Fails</h3>
+                    <p>Dry textbooks. Boring lectures. Information you'll never use. Learning shouldn't feel like punishment—it should feel like leveling up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="section-label" style="background: rgba(46, 78, 209, 0.2); color: #60a5fa;">THE APPROACH</span>
+                <h2 class="section-title">Unlearn. Relearn. Apply.</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">A systematic approach to remove what's limiting you and install what empowers you.</p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="solution-step">
+                    <div class="step-number">1</div>
+                    <h3>Unlearn</h3>
+                    <p>Identify and discard the outdated beliefs, bad habits, and fake limitations that are keeping you stuck.</p>
+                </div>
+                <div class="solution-step">
+                    <div class="step-number">2</div>
+                    <h3>Relearn</h3>
+                    <p>Replace them with empowering mindsets, effective strategies, and skills that actually move the needle.</p>
+                </div>
+                <div class="solution-step">
+                    <div class="step-number">3</div>
+                    <h3>Apply</h3>
+                    <p>Put your new knowledge into action. Real results come from doing, not just consuming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section" id="learn-more">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="section-label">INSIDE THE HQ</span>
+                <h2 class="section-title">What You'll Find</h2>
+                <p class="section-subtitle">Curated resources, real experiments, and practical insights you won't find anywhere else.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <span class="content-emoji">📚</span>
+                    <h3>Deep Dives & Breakdowns</h3>
+                    <p>Important concepts that give you the most bang for your learning buck. No surface-level advice—just the frameworks that actually work.</p>
+                </div>
+                <div class="content-card">
+                    <span class="content-emoji">🧪</span>
+                    <h3>Real Experiments</h3>
+                    <p>I've done the trial and error so you don't have to. See the results, decide if it's worth your time, and move faster.</p>
+                </div>
+                <div class="content-card">
+                    <span class="content-emoji">💡</span>
+                    <h3>Relatable Stories</h3>
+                    <p>Real-world examples from myself and others that show how these concepts work in practice, not just theory.</p>
+                </div>
+                <div class="content-card">
+                    <span class="content-emoji">🛠️</span>
+                    <h3>Tools & Apps</h3>
+                    <p>Current resources to improve your learning process, speed up your workflow, and get more done with less.</p>
+                </div>
+                <div class="content-card">
+                    <span class="content-emoji">📖</span>
+                    <h3>Curated Recommendations</h3>
+                    <p>The best books, articles, and resources on skill acquisition, productivity, and growth—handpicked and highlighted.</p>
+                </div>
+                <div class="content-card">
+                    <span class="content-emoji">🎮</span>
+                    <h3>Gamified Learning</h3>
+                    <p>Learn without even realizing it. Entertaining, inspired, and designed to keep you on track with your goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="usecases-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="section-label">WHO THIS HELPS</span>
+                <h2 class="section-title">Whether You Want To...</h2>
+            </div>
+            
+            <div class="usecases-grid">
+                <div class="usecase-card">
+                    <h3>💰 Make Money From Your Skills</h3>
+                    <p>Turn your interests and expertise into income streams on your own terms.</p>
+                </div>
+                <div class="usecase-card">
+                    <h3>🚀 Launch Something New</h3>
+                    <p>Develop the skills to start a product, side-hustle, or completely new career path.</p>
+                </div>
+                <div class="usecase-card">
+                    <h3>💪 Build Unshakeable Confidence</h3>
+                    <p>Know that no single event, layoff, or change can make you obsolete.</p>
+                </div>
+                <div class="usecase-card">
+                    <h3>🎨 Retry Old Dreams</h3>
+                    <p>Finally pursue that activity or hobby you've always wanted to master.</p>
+                </div>
+                <div class="usecase-card">
+                    <h3>🤝 Share Knowledge</h3>
+                    <p>Pass on your newfound skills and insights to family, friends, or your community.</p>
+                </div>
+                <div class="usecase-card">
+                    <h3>🔄 All of the Above</h3>
+                    <p>Create a life where continuous growth and adaptation are just how you operate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="section-label" style="background: rgba(46, 78, 209, 0.2); color: #60a5fa;">WHY THIS WORKS</span>
+                <h2 class="section-title">Learning That Doesn't Feel Like Learning</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">This isn't another academic resource or productivity blog. This is practical, tested, and designed to keep you engaged.</p>
+            </div>
+            
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <span class="trust-icon">✅</span>
+                    <h4>Battle-Tested</h4>
+                    <p>Every strategy has been personally tried, refined, and validated in the real world.</p>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">⚡</span>
+                    <h4>Zero Fluff</h4>
+                    <p>No academic jargon. No boring lectures. Just actionable insights you can use immediately.</p>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">🎯</span>
+                    <h4>Results-Focused</h4>
+                    <p>The goal isn't to make you feel good. It's to make you more capable, adaptable, and confident.</p>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">🎮</span>
+                    <h4>Actually Engaging</h4>
+                    <p>Techniques and storytelling designed to keep you entertained, inspired, and moving forward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="join">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Join?</h2>
+                <p>Become part of a movement of people who are constantly improving, overcoming challenges, and staying adaptable no matter what comes next.</p>
+                <div class="cta-group">
+                    <a href="https://yoursubstack.com/subscribe" class="btn-primary">Subscribe Now</a>
+                    <a href="https://yoursubstack.com/about" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Supercharged Learning HQ. Mission-driven learning for the real world.</p>
+        </div>
+    </footer>
+</body>
+</html>
